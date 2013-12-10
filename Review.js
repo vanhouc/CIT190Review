@@ -13,24 +13,41 @@ function reverse(domObj) {
 		}
 		output += x;
 	}
-	document.getElementById('userVal').value = output;
+	return output;
 }
 function makeParagraph(domObj) {
-	var i,x,input = domObj.value.trim(),output = '', paragraph = '';
+	'use strict';
+	var i,input = domObj.value.trim(),output = '', paragraph = '',flag = false;
 	for (i=0;i<20;i+=1) {
-		paragraph += input;
+		paragraph += input + ' ';
 	}
+	paragraph.trim();
 	for (i=0;i<4;i+=1) {
-		output += '<p>' + paragraph + '</p>';
+		if (flag === false)
+		{
+			output += '<p class = \'decorate\'>' + paragraph + '</p>';
+			flag = true;
+		}
+		else
+		{
+			output += '<p>' + paragraph + '</p>';
+			flag = false;
+		}
 	}
 	return output;
 }
 $(document).ready(function () {
 	'use strict';
 	$('#first').click(function () {
-		reverse(document.getElementById('userVal'));
+		$('#userVal').val(reverse(document.getElementById('userVal')));
 	});
 	$('#second').click(function () {
 		$('#formControls').after(makeParagraph(document.getElementById('userVal')));
 	});
+	$('#first').text("Reverse");
+	$('#second').text("Generator");
+	$('#headerTitle').text("Final Exam Review");
+	$('#headerSubTitle').text("Sample Text: ");
+	$("footer>h4").html("By: Cameron VanHouzen<br />Date: " + new Date().toUTCString());
+	$("aside").slideUp();
 });

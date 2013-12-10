@@ -2,5 +2,8 @@
 body {
 	background-color: cornflowerblue;
 	color: black;
+}
+.decorate {
 	text-transform: capitalize;
+	text-decoration: underline;
 }
